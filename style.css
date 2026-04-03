@@ -147,6 +147,10 @@ h1 {
         font-size: 2rem;
         padding: 0 10px;
     }
+
+    .output {
+        margin-bottom: 40px;
+    }
 }
 
 
