@@ -1,0 +1,190 @@
+* {
+  font-family: "Changa One", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-image: url(./sourse/background.png);
+    overflow-x: hidden;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 600px;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    z-index: 2;
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    width: 100%;
+}
+
+.output {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20px) scale(0.1);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    cursor: pointer;
+
+    width: 90%;
+    max-width: 400px;
+    aspect-ratio: 1 / 1;
+
+    border: 1px solid #333;
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 
+        0 10px 15px -3px rgba(0, 0, 0, 0.05),
+        0 4px 6px -2px rgba(0, 0, 0, 0.02);
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    flex-direction: column;
+    gap: 10px;
+    
+}
+
+.output:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.download-hint {
+    position: static;
+    bottom: 15px;
+    margin-top: 0;
+    font-size: 14px;
+    color: #1a531f;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.output img, .output canvas {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.4s ease;
+    border-radius: 8px;
+
+    max-width: 100%;
+    height: auto !important;
+}
+
+.output.qr-ready canvas, .output.qr-ready img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.output.qr-ready .download-hint {
+    opacity: 0.7;
+}
+
+h1 {
+    color: #F7F6E5;
+    -webkit-text-stroke: 1px #0bc9eb;
+    font-size: 3rem;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+@media (min-width: 900px){
+    .container.active .container-wrapper {
+        left: 25%;
+    }
+    .container.active .output {
+        left: 75%;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@media (max-width: 899px){
+    .container {
+        min-height: 800px;
+        justify-content: center;
+    }
+
+    .container.active .container-wrapper {
+        top: 25%;
+    }
+    .container.active .output {
+        top: 75%;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    h1 {
+        font-size: 2rem;
+        padding: 0 10px;
+    }
+}
+
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+input {
+    width: 250px;
+    height: 40px;
+    border: 1px solid #ecdcdc;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding: 0 15px;
+}
+
+.generate-btn {
+  background-color: #62c1e7;
+  border-radius: 100px;
+  box-shadow: rgba(44, 134, 187, 0.15) 0 -25px 18px -14px inset,rgba(44, 134, 187, 0.15) 0 1px 2px,rgba(44, 134, 187, 0.15) 0 2px 4px,rgba(44, 134, 187, 0.15) 0 4px 8px,rgba(44, 134, 187, 0.15) 0 8px 16px,rgba(44, 134, 187, 0.15) 0 16px 32px;
+  color: #15173D;
+  cursor: pointer;
+  display: inline-block;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.generate-btn:hover {
+  box-shadow: rgba(44, 146, 187, 0.35) 0 -25px 18px -14px inset,rgba(59, 150, 215, 0.25) 0 1px 2px,rgba(44, 137, 187, 0.25) 0 2px 4px,rgba(44, 89, 187, 0.25) 0 4px 8px,rgba(44, 149, 187, 0.25) 0 8px 16px,rgba(44, 104, 187, 0.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
