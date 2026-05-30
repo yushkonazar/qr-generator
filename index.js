@@ -31,9 +31,11 @@ function generateQR(){
             isAnimating = false;
         }, 800);
     } else {
+        isAnimating = true;
         qrContainer.classList.remove("qr-ready");
         setTimeout(() => {
             renderQR(url);
+            isAnimating = false;
         }, 400)
     }
 }
@@ -66,6 +68,7 @@ generateBTN.addEventListener("click", generateQR);
 qrContainer.addEventListener("click", () => {
     const canvas = qrContainer.querySelector("canvas")
     if (!canvas) return;
+    if (!qrContainer.classList.contains("qr-ready")) return;
 
     let name = fileNameInput.value.trim();
     if (!name) name = "my-qrcode"
